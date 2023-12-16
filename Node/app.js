@@ -27,6 +27,26 @@ app.use('/book', bookRouter);
 //stop injections and allow cross site scripting
 const helmet = require('helmet');
 const cors = require('cors');
+//get token ignore signins
+const jwt = require('jsonwebtoken');
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    console.log("token = "+token);
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token, process.env.MY_TOKEN, (err, user) => {
+      console.log(err)
+
+      if (err) return res.sendStatus(403)
+
+      req.user = user
+
+      next()
+    })
+  }
 
 app.use(helmet());
 app.use(cors());
