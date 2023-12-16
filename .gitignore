@@ -18,7 +18,7 @@ apikey.js
 #any media outside of pics
 *.mp4
 *.mp3
-*.pdf
+# *.pdf
 *.zip
 *.rar
 #don't upload builds
