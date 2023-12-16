@@ -4,6 +4,8 @@
 -- Server OS:                    Win64
 -- HeidiSQL Version:             12.5.0.6677
 -- --------------------------------------------------------
+/*16.12.2023
+Antti Suomi, syksy 2023 ohjelmaprojekti rästitehtävä*/
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
