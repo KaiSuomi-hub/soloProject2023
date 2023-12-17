@@ -1,8 +1,7 @@
 #for ohjelmointiprojekti
 node_modules/
-QT/build/
 QT/*.user
-
+*build*
 *cmake-build*
 *.pro.user*
 
