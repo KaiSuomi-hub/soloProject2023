@@ -1,3 +1,6 @@
+//17.12.2023
+//Antti Suomi, syksy 2023 ohjelmaprojekti rästitehtävä
+
 #include "mainwindow.h"
 
 #include <QApplication>

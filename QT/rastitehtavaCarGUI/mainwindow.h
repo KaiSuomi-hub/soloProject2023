@@ -1,3 +1,6 @@
+//17.12.2023
+//Antti Suomi, syksy 2023 ohjelmaprojekti rästitehtävä
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -14,6 +17,17 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+
+
+    void on_remove_clicked();
+
+    void on_update_clicked();
+
+    void on_add_clicked();
+
+    void on_get_clicked();
 
 private:
     Ui::MainWindow *ui;
