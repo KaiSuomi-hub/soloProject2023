@@ -13,30 +13,30 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+//destruction below
     delete ui;
-//added deconsctructor
+//added deconsctructor as advised
     ui=nullptr;
+//desctruct car() class
+    delete objectcar;
+    objectcar=nullptr;
 }
 
-
-
+//buttons below
 void MainWindow::on_remove_clicked()
 {
 
 }
-
 
 void MainWindow::on_update_clicked()
 {
 
 }
 
-
 void MainWindow::on_add_clicked()
 {
 
 }
-
 
 void MainWindow::on_get_clicked()
 {

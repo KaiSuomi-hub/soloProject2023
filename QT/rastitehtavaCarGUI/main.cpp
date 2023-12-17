@@ -2,7 +2,7 @@
 //Antti Suomi, syksy 2023 ohjelmaprojekti rästitehtävä
 
 #include "mainwindow.h"
-
+#include "car.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

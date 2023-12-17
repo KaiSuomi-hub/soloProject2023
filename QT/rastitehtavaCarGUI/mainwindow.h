@@ -5,6 +5,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <car.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,19 +19,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+//buttons below
 private slots:
-
-
     void on_remove_clicked();
-
     void on_update_clicked();
-
     void on_add_clicked();
-
     void on_get_clicked();
-
 private:
     Ui::MainWindow *ui;
+//    Here we add the car class
+    car *objectcar;
+
 };
 #endif // MAINWINDOW_H
