@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const car = require('../models/car_model');
 
+//list all
 router.get('/',
     function (request, response) {
         car.getAll(function (err, dbResult) {
@@ -16,7 +17,7 @@ router.get('/',
             }
         })
     });
-
+//read by id
 router.get('/:id',
     function (request, response) {
         car.getById(request.params.id, function (err, dbResult) {
@@ -28,7 +29,7 @@ router.get('/:id',
         })
     });
 
-
+//create by id
 router.post('/',
 function(request, response) {
   car.add(request.body, function(err, dbResult) {
@@ -40,7 +41,7 @@ function(request, response) {
   });
 });
 
-
+// delete by id
 router.delete('/:id',
 function(request, response) {
   car.delete(request.params.id, function(err, dbResult) {
@@ -52,7 +53,7 @@ function(request, response) {
   });
 });
 
-
+//and update by id
 router.put('/:id',
 function(request, response) {
   car.update(request.params.id, request.body, function(err, dbResult) {

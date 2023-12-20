@@ -1,6 +1,7 @@
 #17.12.2023
 #Antti Suomi, syksy 2023 ohjelmaprojekti rästitehtävä
 QT       += core gui
+#Add network functionality
 QT       +=network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
