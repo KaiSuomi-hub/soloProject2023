@@ -43,9 +43,12 @@ void MainWindow::on_remove_clicked()
 void MainWindow::on_update_clicked()
 {
     QJsonObject jsonObj;
-    jsonObj.insert("branch","Muokattu kirja");
-    jsonObj.insert("model","Jussi Juonio");
-    QString site_url="http://localhost:3000/car/1";
+    QString id_car=ui->id_car->text();
+    QString site_url="http://localhost:3000/car/"+id_car;
+    QString branch = ui->branch->text();
+    QString model= ui->model->text();
+    jsonObj.insert("branch",branch);
+    jsonObj.insert("model",model);
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     putManager = new QNetworkAccessManager(this);
@@ -56,9 +59,11 @@ void MainWindow::on_update_clicked()
 void MainWindow::on_add_clicked()
 {
     QJsonObject jsonObj;
-    jsonObj.insert("branch","Uusi kirja");
-    jsonObj.insert("model","Matti Mainio");
-    QString site_url="http://localhost:3000/car";
+    QString branch = ui->branch->text();
+    QString model= ui->model->text();
+    jsonObj.insert("branch",branch);
+    jsonObj.insert("model",model);
+    QString site_url="http://localhost:3000/car/";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     postManager = new QNetworkAccessManager(this);
@@ -68,7 +73,13 @@ void MainWindow::on_add_clicked()
 
 void MainWindow::on_get_clicked()
 {
-
+    QString id_car=ui->id_car->text();
+    QString site_url="http://localhost:3000/car/"+id_car;
+    qDebug()<<site_url;
+    QNetworkRequest request(site_url);
+    getManager = new QNetworkAccessManager(this);
+    connect(getManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getCarSlot(QNetworkReply*)));
+    reply = getManager->get(request);
 }
 //this is for an array, which we get when we call for the root of car
 
