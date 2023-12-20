@@ -20,23 +20,38 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+/*
+ *
+ *Public
+ *
+ */
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 //buttons below
+ /*
+ *
+ *Private Slots
+ *
+ */
 private slots:
     void on_remove_clicked();
     void on_update_clicked();
     void on_add_clicked();
     void on_get_clicked();
-
     void getCarSlot (QNetworkReply *reply);
 //read
     void on_refresh_clicked();
-//post
+//create
     void addCarSlot (QNetworkReply *reply);
+// update
+    void updateCarSlot (QNetworkReply *reply);
 
+ /*
+ *
+ *Private
+ *
+ */
 private:
     Ui::MainWindow *ui;
 //    Here we add the car class
@@ -46,8 +61,11 @@ private:
     QNetworkAccessManager *getManager;
     QNetworkReply *reply;
     QByteArray response_data;
-//post
+//create
     QNetworkAccessManager *postManager;
+//update
+    QNetworkAccessManager *putManager;
+
 
 };
 #endif // MAINWINDOW_H
