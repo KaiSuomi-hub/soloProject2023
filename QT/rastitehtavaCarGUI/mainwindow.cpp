@@ -40,7 +40,16 @@ void MainWindow::on_update_clicked()
 
 void MainWindow::on_add_clicked()
 {
+    QJsonObject jsonObj;
+    jsonObj.insert("branch","Uusi kirja");
+    jsonObj.insert("model","Matti Mainio");
 
+    QString site_url="http://localhost:3000/car";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    postManager = new QNetworkAccessManager(this);
+    connect(postManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(addCarSlot(QNetworkReply*)));
+    reply = postManager->post(request, QJsonDocument(jsonObj).toJson());
 }
 
 void MainWindow::on_get_clicked()
@@ -67,8 +76,8 @@ void MainWindow::on_refresh_clicked()
      *
     */
     connect(getManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getCarSlot(QNetworkReply*)));
-
     reply = getManager->get(request);
+
 }
 
 void MainWindow::getCarSlot (QNetworkReply *reply)
@@ -89,8 +98,13 @@ void MainWindow::getCarSlot (QNetworkReply *reply)
     getManager->deleteLater();
 }
 
-void MainWindow::on_status_windowIconTextChanged(const QString &iconText)
+
+void MainWindow::addCarSlot (QNetworkReply *reply)
 {
-
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    //let's print out what we get for curiosity's sake as raw
+    ui->status->setText(response_data);
+    reply->deleteLater();
+    postManager->deleteLater();
 }
-

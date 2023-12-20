@@ -8,9 +8,9 @@
 #include <car.h>
 #include <QDialog>
 #include <QtNetwork/QNetworkReply>
+#include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include <QJsonObject>
-
 #include <QJsonArray>
 
 QT_BEGIN_NAMESPACE
@@ -32,18 +32,22 @@ private slots:
     void on_get_clicked();
 
     void getCarSlot (QNetworkReply *reply);
-
+//read
     void on_refresh_clicked();
-
-    void on_status_windowIconTextChanged(const QString &iconText);
+//post
+    void addCarSlot (QNetworkReply *reply);
 
 private:
     Ui::MainWindow *ui;
 //    Here we add the car class
     car *objectcar;
 //    Let's go online
+//read
     QNetworkAccessManager *getManager;
     QNetworkReply *reply;
     QByteArray response_data;
+//post
+    QNetworkAccessManager *postManager;
+
 };
 #endif // MAINWINDOW_H
