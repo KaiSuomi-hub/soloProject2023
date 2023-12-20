@@ -46,6 +46,8 @@ private slots:
     void addCarSlot (QNetworkReply *reply);
 // update
     void updateCarSlot (QNetworkReply *reply);
+// delete
+    void deleteCarSlot (QNetworkReply *reply);
 
  /*
  *
@@ -65,6 +67,8 @@ private:
     QNetworkAccessManager *postManager;
 //update
     QNetworkAccessManager *putManager;
+//delete
+    QNetworkAccessManager *deleteManager;
 
 
 };

@@ -30,7 +30,12 @@ MainWindow::~MainWindow()
 //buttons below
 void MainWindow::on_remove_clicked()
 {
-
+    QString site_url="http://localhost:3000/car/2";
+    QNetworkRequest request(site_url);
+    deleteManager = new QNetworkAccessManager(this);
+    connect(deleteManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(deleteCarSlot(QNetworkReply*)));
+    /* Delete is a reserved word in QT so thus the deleteresource*/
+    reply = deleteManager->deleteResource(request);
 }
 
 void MainWindow::on_update_clicked()
@@ -51,7 +56,6 @@ void MainWindow::on_add_clicked()
     QJsonObject jsonObj;
     jsonObj.insert("branch","Uusi kirja");
     jsonObj.insert("model","Matti Mainio");
-
     QString site_url="http://localhost:3000/car";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -127,3 +131,12 @@ void MainWindow::updateCarSlot (QNetworkReply *reply)
     putManager->deleteLater();
 }
 
+void MainWindow::deleteCarSlot (QNetworkReply *reply)
+{
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    //let's print out what we get for curiosity's sake as raw
+    ui->status->setText(response_data);
+    reply->deleteLater();
+    deleteManager->deleteLater();
+}
