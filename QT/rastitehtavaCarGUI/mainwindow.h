@@ -49,15 +49,20 @@ private slots:
 // delete
     void deleteCarSlot (QNetworkReply *reply);
 
+//id
+
  /*
  *
  *Private
- *
+ *s
  */
 private:
     Ui::MainWindow *ui;
 //    Here we add the car class
     car *objectcar;
+// form fields and values
+
+
 //    Let's go online
 //read
     QNetworkAccessManager *getManager;

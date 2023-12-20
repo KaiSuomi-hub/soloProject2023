@@ -13,10 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 }
-
 MainWindow::~MainWindow()
 {
-//let's list cars
 
 //destruction below
     delete ui;
@@ -27,10 +25,14 @@ MainWindow::~MainWindow()
     objectcar=nullptr;
 }
 
+
+
 //buttons below
 void MainWindow::on_remove_clicked()
 {
-    QString site_url="http://localhost:3000/car/2";
+    QString id_car=ui->id_car->text();
+    QString site_url="http://localhost:3000/car/"+id_car;
+    qDebug()<<site_url;
     QNetworkRequest request(site_url);
     deleteManager = new QNetworkAccessManager(this);
     connect(deleteManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(deleteCarSlot(QNetworkReply*)));
